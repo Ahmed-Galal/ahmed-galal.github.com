@@ -1,0 +1,836 @@
+<html lang="en">
+<head>
+    <base href="/">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello, Bootstrap Table!</title>
+
+    <link rel="stylesheet" href="https://kit-free.fontawesome.com/releases/latest/css/free.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.js"></script>
+    <script>
+        function printData() {
+            var html = "<html><head><link rel='stylesheet' href='https://kit-free.fontawesome.com/releases/latest/css/free.min.css'>\n" +
+                "    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css'\n" +
+                "          integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'>" +
+                "<link href='https://unpkg.com/bootstrap-table@1.17.1/dist/bootstrap-table.min.css' rel='stylesheet'><style>.table td, .table th {\n" +
+                "    padding: .75rem;\n" +
+                "    vertical-align: top;\n" +
+                "    border-top: 1px solid #dee2e6;\n" +
+                "}.table thead th {\n" +
+                "    vertical-align: bottom;\n" +
+                "    border-bottom: 2px solid #dee2e6;\n" +
+                "}</style></head>"
+            var divToPrint = document.getElementById("printTable");
+            html += divToPrint.outerHTML;
+            html += "</html>";
+            newWin = window.open("");
+            newWin.document.write(html);
+            newWin.print();
+            newWin.close();
+        }
+
+        $('document').ready(function () {
+            $('#printBT').on('click', function () {
+                printData();
+            })
+        });
+    </script>
+
+</head>
+<body>
+
+<style>
+    .select,
+    #locale {
+        width: 100%;
+    }
+
+    .like {
+        margin-right: 10px;
+    }
+
+    .fixed-table-body {
+        height: unset !important;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
+    .tb-large-screen {
+        display: table;
+    }
+
+    .small-screen {
+        display: none;
+    }
+
+    @media (max-width: 800px) {
+        .tb-large-screen {
+            display: none;
+        }
+
+        .small-screen {
+            display: block;
+        }
+    }
+</style>
+<!-- Table with panel -->
+<div class="card card-cascade narrower">
+
+    <!--Card image-->
+    <div class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center"
+         style="background-color: #5eb504;">
+
+        <!--<div>-->
+        <!--<button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">-->
+        <!--<i class="fas fa-th-large mt-0"></i>-->
+        <!--</button>-->
+        <!--<button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">-->
+        <!--<i class="fas fa-columns mt-0"></i>-->
+        <!--</button>-->
+        <!--</div>-->
+
+        <a href="javascript:void(0)" class="white-text mx-3" style="color: white;text-decoration:none;">Nana POS
+            Receipt</a>
+
+
+        <div>
+            <button id="printBT" class="btn bs-print" type="button" style="color:white;">
+                <i class="fa fa-print"></i>
+            </button>
+            <img src="https://cp.nana.sa/assets/img/ikujic5ebfo3i7xwkhhq.webp"
+                 style="width: 30px; height: 30px;margin-right: 30px;">
+
+            <!--<button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">-->
+            <!--<i class="fas fa-pencil-alt mt-0"></i>-->
+            <!--</button>-->
+            <!--<button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">-->
+            <!--<i class="far fa-trash-alt mt-0"></i>-->
+            <!--</button>-->
+            <!--<button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">-->
+            <!--<i class="fas fa-info-circle mt-0"></i>-->
+            <!--</button>-->
+        </div>
+
+
+    </div>
+    <!--/Card image-->
+
+    <div class="px-4">
+
+        <div class="table-wrapper">
+            <!--Table-->
+            <table id="printTable" class="tb-large-screen table table-hover mb-0 ">
+
+                <!--Table head-->
+                <thead>
+                <tr>
+                    <th colspan="1" rowspan="1" class="th-lg">
+                        المنتج
+                        <!--<a href="javascript:void(0)">First Name-->
+                        <!--<i class="fas fa-sort ml-1"></i>-->
+                        <!--</a>-->
+                    </th>
+                    <th>السعر</th>
+                    <th>الكمية</th>
+                    <th class="th-lg">
+                        الباركود
+                        <!--<a href="javascript:void(0)">Last Name-->
+                        <!--<i class="fas fa-sort ml-1"></i>-->
+                        <!--</a>-->
+                    </th>
+                </tr>
+                </thead>
+                <!--Table head-->
+
+                <!--Table body-->
+                <tbody>
+                <tr>
+                    <td class="item-name" colspan="1" rowspan="1" style="border-bottom: 1px solid green;">شيبس مرامي
+                        الملح و الخل قليل الدسم 100 جرام
+                    </td>
+                    <td style="border-bottom: 1px solid green;">2.00 RSA</td>
+                    <td style="border-bottom: 1px solid green;">1</td>
+                    <td colspan="1" rowspan="1" style="padding: 1px;width: 20%;border-bottom: 1px solid green;">
+                        <svg width="242px" height="142px" x="0px" y="0px" viewBox="0 0 242 142"
+                             xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)">
+                            <rect x="0" y="0" width="242" height="142" style="fill:#ffffff;"></rect>
+                            <g transform="translate(10, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="start" x="0" y="122">0</text>
+                            </g>
+                            <g transform="translate(26, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="12" y="0" width="4" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(46, 10)" style="fill:#000000;">
+                                <rect x="4" y="0" width="4" height="100"></rect>
+                                <rect x="12" y="0" width="2" height="100"></rect>
+                                <rect x="16" y="0" width="2" height="100"></rect>
+                                <rect x="20" y="0" width="8" height="100"></rect>
+                                <rect x="34" y="0" width="4" height="100"></rect>
+                                <rect x="40" y="0" width="2" height="100"></rect>
+                                <rect x="48" y="0" width="4" height="100"></rect>
+                                <rect x="54" y="0" width="2" height="100"></rect>
+                                <rect x="62" y="0" width="4" height="100"></rect>
+                                <rect x="68" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">16000</text>
+                            </g>
+                            <g transform="translate(116, 10)" style="fill:#000000;">
+                                <rect x="2" y="0" width="2" height="112"></rect>
+                                <rect x="6" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="5" y="134"></text>
+                            </g>
+                            <g transform="translate(126, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="100"></rect>
+                                <rect x="4" y="0" width="6" height="100"></rect>
+                                <rect x="14" y="0" width="2" height="100"></rect>
+                                <rect x="24" y="0" width="2" height="100"></rect>
+                                <rect x="28" y="0" width="2" height="100"></rect>
+                                <rect x="36" y="0" width="2" height="100"></rect>
+                                <rect x="42" y="0" width="6" height="100"></rect>
+                                <rect x="50" y="0" width="2" height="100"></rect>
+                                <rect x="56" y="0" width="6" height="100"></rect>
+                                <rect x="66" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">43790</text>
+                            </g>
+                            <g transform="translate(196, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="14" y="0" width="2" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(216, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="end" x="15" y="122">6</text>
+                            </g>
+                        </svg>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" rowspan="1" style="border-bottom: 1px solid green;">قراميش الذرة شيتوس كرنشي حار نار
+                        205 جرام
+                    </td>
+                    <td style="border-bottom: 1px solid green;">2.00 RSA</td>
+                    <td style="border-bottom: 1px solid green;">1</td>
+                    <td colspan="1" rowspan="1" style="padding: 1px;width: 20%;border-bottom: 1px solid green;">
+                        <svg width="242px" height="142px" x="0px" y="0px" viewBox="0 0 242 142"
+                             xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)">
+                            <rect x="0" y="0" width="242" height="142" style="fill:#ffffff;"></rect>
+                            <g transform="translate(10, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="start" x="0" y="122">0</text>
+                            </g>
+                            <g transform="translate(26, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="12" y="0" width="4" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(46, 10)" style="fill:#000000;">
+                                <rect x="4" y="0" width="4" height="100"></rect>
+                                <rect x="12" y="0" width="2" height="100"></rect>
+                                <rect x="16" y="0" width="2" height="100"></rect>
+                                <rect x="20" y="0" width="8" height="100"></rect>
+                                <rect x="34" y="0" width="4" height="100"></rect>
+                                <rect x="40" y="0" width="2" height="100"></rect>
+                                <rect x="48" y="0" width="4" height="100"></rect>
+                                <rect x="54" y="0" width="2" height="100"></rect>
+                                <rect x="62" y="0" width="4" height="100"></rect>
+                                <rect x="68" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">16000</text>
+                            </g>
+                            <g transform="translate(116, 10)" style="fill:#000000;">
+                                <rect x="2" y="0" width="2" height="112"></rect>
+                                <rect x="6" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="5" y="134"></text>
+                            </g>
+                            <g transform="translate(126, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="100"></rect>
+                                <rect x="4" y="0" width="6" height="100"></rect>
+                                <rect x="14" y="0" width="2" height="100"></rect>
+                                <rect x="24" y="0" width="2" height="100"></rect>
+                                <rect x="28" y="0" width="2" height="100"></rect>
+                                <rect x="36" y="0" width="2" height="100"></rect>
+                                <rect x="42" y="0" width="6" height="100"></rect>
+                                <rect x="50" y="0" width="2" height="100"></rect>
+                                <rect x="56" y="0" width="6" height="100"></rect>
+                                <rect x="66" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">43790</text>
+                            </g>
+                            <g transform="translate(196, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="14" y="0" width="2" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(216, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="end" x="15" y="122">6</text>
+                            </g>
+                        </svg>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" rowspan="1" style="border-bottom: 1px solid green;">لبن المراعي كامل الدسم 360 مل
+                    </td>
+                    <td style="border-bottom: 1px solid green;">2.00 RSA</td>
+                    <td style="border-bottom: 1px solid green;">1</td>
+                    <td colspan="1" rowspan="1" style="padding: 1px;width: 20%;border-bottom: 1px solid green;">
+                        <svg width="242px" height="142px" x="0px" y="0px" viewBox="0 0 242 142"
+                             xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)">
+                            <rect x="0" y="0" width="242" height="142" style="fill:#ffffff;"></rect>
+                            <g transform="translate(10, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="start" x="0" y="122">0</text>
+                            </g>
+                            <g transform="translate(26, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="12" y="0" width="4" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(46, 10)" style="fill:#000000;">
+                                <rect x="4" y="0" width="4" height="100"></rect>
+                                <rect x="12" y="0" width="2" height="100"></rect>
+                                <rect x="16" y="0" width="2" height="100"></rect>
+                                <rect x="20" y="0" width="8" height="100"></rect>
+                                <rect x="34" y="0" width="4" height="100"></rect>
+                                <rect x="40" y="0" width="2" height="100"></rect>
+                                <rect x="48" y="0" width="4" height="100"></rect>
+                                <rect x="54" y="0" width="2" height="100"></rect>
+                                <rect x="62" y="0" width="4" height="100"></rect>
+                                <rect x="68" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">16000</text>
+                            </g>
+                            <g transform="translate(116, 10)" style="fill:#000000;">
+                                <rect x="2" y="0" width="2" height="112"></rect>
+                                <rect x="6" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="5" y="134"></text>
+                            </g>
+                            <g transform="translate(126, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="100"></rect>
+                                <rect x="4" y="0" width="6" height="100"></rect>
+                                <rect x="14" y="0" width="2" height="100"></rect>
+                                <rect x="24" y="0" width="2" height="100"></rect>
+                                <rect x="28" y="0" width="2" height="100"></rect>
+                                <rect x="36" y="0" width="2" height="100"></rect>
+                                <rect x="42" y="0" width="6" height="100"></rect>
+                                <rect x="50" y="0" width="2" height="100"></rect>
+                                <rect x="56" y="0" width="6" height="100"></rect>
+                                <rect x="66" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">43790</text>
+                            </g>
+                            <g transform="translate(196, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="14" y="0" width="2" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(216, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="end" x="15" y="122">6</text>
+                            </g>
+                        </svg>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" rowspan="1" style="border-bottom: 1px solid green;">ميرندا برتقال 150 مل</td>
+                    <td style="border-bottom: 1px solid green;">2.00 RSA</td>
+                    <td style="border-bottom: 1px solid green;">1</td>
+                    <td colspan="1" rowspan="1" style="padding: 1px;width: 20%;border-bottom: 1px solid green;">
+                        <svg width="242px" height="142px" x="0px" y="0px" viewBox="0 0 242 142"
+                             xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)">
+                            <rect x="0" y="0" width="242" height="142" style="fill:#ffffff;"></rect>
+                            <g transform="translate(10, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="start" x="0" y="122">0</text>
+                            </g>
+                            <g transform="translate(26, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="12" y="0" width="4" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(46, 10)" style="fill:#000000;">
+                                <rect x="4" y="0" width="4" height="100"></rect>
+                                <rect x="12" y="0" width="2" height="100"></rect>
+                                <rect x="16" y="0" width="2" height="100"></rect>
+                                <rect x="20" y="0" width="8" height="100"></rect>
+                                <rect x="34" y="0" width="4" height="100"></rect>
+                                <rect x="40" y="0" width="2" height="100"></rect>
+                                <rect x="48" y="0" width="4" height="100"></rect>
+                                <rect x="54" y="0" width="2" height="100"></rect>
+                                <rect x="62" y="0" width="4" height="100"></rect>
+                                <rect x="68" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">16000</text>
+                            </g>
+                            <g transform="translate(116, 10)" style="fill:#000000;">
+                                <rect x="2" y="0" width="2" height="112"></rect>
+                                <rect x="6" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="5" y="134"></text>
+                            </g>
+                            <g transform="translate(126, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="100"></rect>
+                                <rect x="4" y="0" width="6" height="100"></rect>
+                                <rect x="14" y="0" width="2" height="100"></rect>
+                                <rect x="24" y="0" width="2" height="100"></rect>
+                                <rect x="28" y="0" width="2" height="100"></rect>
+                                <rect x="36" y="0" width="2" height="100"></rect>
+                                <rect x="42" y="0" width="6" height="100"></rect>
+                                <rect x="50" y="0" width="2" height="100"></rect>
+                                <rect x="56" y="0" width="6" height="100"></rect>
+                                <rect x="66" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">43790</text>
+                            </g>
+                            <g transform="translate(196, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="14" y="0" width="2" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(216, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="end" x="15" y="122">6</text>
+                            </g>
+                        </svg>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="1" rowspan="1" style="border-bottom: 1px solid green;">ماونتن ديو 250 مل</td>
+                    <td style="border-bottom: 1px solid green;">2.00 RSA</td>
+                    <td style="border-bottom: 1px solid green;">1</td>
+                    <td colspan="1" rowspan="1" style="padding: 1px;width: 20%;border-bottom: 1px solid green;">
+                        <svg width="242px" height="142px" x="0px" y="0px" viewBox="0 0 242 142"
+                             xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)">
+                            <rect x="0" y="0" width="242" height="142" style="fill:#ffffff;"></rect>
+                            <g transform="translate(10, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="start" x="0" y="122">0</text>
+                            </g>
+                            <g transform="translate(26, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="12" y="0" width="4" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(46, 10)" style="fill:#000000;">
+                                <rect x="4" y="0" width="4" height="100"></rect>
+                                <rect x="12" y="0" width="2" height="100"></rect>
+                                <rect x="16" y="0" width="2" height="100"></rect>
+                                <rect x="20" y="0" width="8" height="100"></rect>
+                                <rect x="34" y="0" width="4" height="100"></rect>
+                                <rect x="40" y="0" width="2" height="100"></rect>
+                                <rect x="48" y="0" width="4" height="100"></rect>
+                                <rect x="54" y="0" width="2" height="100"></rect>
+                                <rect x="62" y="0" width="4" height="100"></rect>
+                                <rect x="68" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">16000</text>
+                            </g>
+                            <g transform="translate(116, 10)" style="fill:#000000;">
+                                <rect x="2" y="0" width="2" height="112"></rect>
+                                <rect x="6" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="5" y="134"></text>
+                            </g>
+                            <g transform="translate(126, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="100"></rect>
+                                <rect x="4" y="0" width="6" height="100"></rect>
+                                <rect x="14" y="0" width="2" height="100"></rect>
+                                <rect x="24" y="0" width="2" height="100"></rect>
+                                <rect x="28" y="0" width="2" height="100"></rect>
+                                <rect x="36" y="0" width="2" height="100"></rect>
+                                <rect x="42" y="0" width="6" height="100"></rect>
+                                <rect x="50" y="0" width="2" height="100"></rect>
+                                <rect x="56" y="0" width="6" height="100"></rect>
+                                <rect x="66" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">43790</text>
+                            </g>
+                            <g transform="translate(196, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="14" y="0" width="2" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(216, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="end" x="15" y="122">6</text>
+                            </g>
+                        </svg>
+                    </td>
+                </tr>
+                </tbody>
+                <!--Table body-->
+            </table>
+            <!--Table-->
+            <table id="printTable" class="table table-hover mb-0 small-screen">
+
+                <!--Table head-->
+                <thead>
+                <tr>
+                    <th colspan="2" rowspan="1" class="th-lg text-center">
+                        المنتجات
+                    </th>
+                </tr>
+                </thead>
+                <!--Table head-->
+
+                <!--Table body-->
+                <tbody>
+                <tr>
+                    <td colspan="2" rowspan="1" style="text-align: center;font-weight: bold;">شيبس مرامي الملح و الخل
+                        قليل الدسم 100 جرام
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 20px;color: green;font-weight: bold;">2.00 RSA</td>
+                    <td colspan="1" rowspan="2" style="padding: 0px;width: 20%;border-bottom: 3px solid green;">
+                        <svg width="242px" height="142px" x="0px" y="0px" viewBox="0 0 242 142"
+                             xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)">
+                            <rect x="0" y="0" width="242" height="142" style="fill:#ffffff;"></rect>
+                            <g transform="translate(10, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="start" x="0" y="122">0</text>
+                            </g>
+                            <g transform="translate(26, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="12" y="0" width="4" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(46, 10)" style="fill:#000000;">
+                                <rect x="4" y="0" width="4" height="100"></rect>
+                                <rect x="12" y="0" width="2" height="100"></rect>
+                                <rect x="16" y="0" width="2" height="100"></rect>
+                                <rect x="20" y="0" width="8" height="100"></rect>
+                                <rect x="34" y="0" width="4" height="100"></rect>
+                                <rect x="40" y="0" width="2" height="100"></rect>
+                                <rect x="48" y="0" width="4" height="100"></rect>
+                                <rect x="54" y="0" width="2" height="100"></rect>
+                                <rect x="62" y="0" width="4" height="100"></rect>
+                                <rect x="68" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">16000</text>
+                            </g>
+                            <g transform="translate(116, 10)" style="fill:#000000;">
+                                <rect x="2" y="0" width="2" height="112"></rect>
+                                <rect x="6" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="5" y="134"></text>
+                            </g>
+                            <g transform="translate(126, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="100"></rect>
+                                <rect x="4" y="0" width="6" height="100"></rect>
+                                <rect x="14" y="0" width="2" height="100"></rect>
+                                <rect x="24" y="0" width="2" height="100"></rect>
+                                <rect x="28" y="0" width="2" height="100"></rect>
+                                <rect x="36" y="0" width="2" height="100"></rect>
+                                <rect x="42" y="0" width="6" height="100"></rect>
+                                <rect x="50" y="0" width="2" height="100"></rect>
+                                <rect x="56" y="0" width="6" height="100"></rect>
+                                <rect x="66" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">43790</text>
+                            </g>
+                            <g transform="translate(196, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="14" y="0" width="2" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(216, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="end" x="15" y="122">6</text>
+                            </g>
+                        </svg>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 3px solid green;font-weight: bold;font-size: 20px;">1</td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="1" style="text-align: center;font-weight: bold;">قراميش الذرة شيتوس كرنشي
+                        حار نار 205 جرام
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 20px;color: green;font-weight: bold;">2.00 RSA</td>
+                    <td colspan="1" rowspan="2" style="padding: 0px;width: 20%;border-bottom: 3px solid green;">
+                        <svg width="242px" height="142px" x="0px" y="0px" viewBox="0 0 242 142"
+                             xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)">
+                            <rect x="0" y="0" width="242" height="142" style="fill:#ffffff;"></rect>
+                            <g transform="translate(10, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="start" x="0" y="122">0</text>
+                            </g>
+                            <g transform="translate(26, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="12" y="0" width="4" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(46, 10)" style="fill:#000000;">
+                                <rect x="4" y="0" width="4" height="100"></rect>
+                                <rect x="12" y="0" width="2" height="100"></rect>
+                                <rect x="16" y="0" width="2" height="100"></rect>
+                                <rect x="20" y="0" width="8" height="100"></rect>
+                                <rect x="34" y="0" width="4" height="100"></rect>
+                                <rect x="40" y="0" width="2" height="100"></rect>
+                                <rect x="48" y="0" width="4" height="100"></rect>
+                                <rect x="54" y="0" width="2" height="100"></rect>
+                                <rect x="62" y="0" width="4" height="100"></rect>
+                                <rect x="68" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">16000</text>
+                            </g>
+                            <g transform="translate(116, 10)" style="fill:#000000;">
+                                <rect x="2" y="0" width="2" height="112"></rect>
+                                <rect x="6" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="5" y="134"></text>
+                            </g>
+                            <g transform="translate(126, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="100"></rect>
+                                <rect x="4" y="0" width="6" height="100"></rect>
+                                <rect x="14" y="0" width="2" height="100"></rect>
+                                <rect x="24" y="0" width="2" height="100"></rect>
+                                <rect x="28" y="0" width="2" height="100"></rect>
+                                <rect x="36" y="0" width="2" height="100"></rect>
+                                <rect x="42" y="0" width="6" height="100"></rect>
+                                <rect x="50" y="0" width="2" height="100"></rect>
+                                <rect x="56" y="0" width="6" height="100"></rect>
+                                <rect x="66" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">43790</text>
+                            </g>
+                            <g transform="translate(196, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="14" y="0" width="2" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(216, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="end" x="15" y="122">6</text>
+                            </g>
+                        </svg>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 3px solid green;font-weight: bold;font-size: 20px;">1</td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="1" style="text-align: center;font-weight: bold;">لبن المراعي كامل الدسم 360
+                        مل
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td style="font-size: 20px;color: green;font-weight: bold;">2.00 RSA</td>
+                    <td colspan="1" rowspan="2" style="padding: 0px;width: 20%;border-bottom: 3px solid green;">
+                        <svg width="242px" height="142px" x="0px" y="0px" viewBox="0 0 242 142"
+                             xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)">
+                            <rect x="0" y="0" width="242" height="142" style="fill:#ffffff;"></rect>
+                            <g transform="translate(10, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="start" x="0" y="122">0</text>
+                            </g>
+                            <g transform="translate(26, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="12" y="0" width="4" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(46, 10)" style="fill:#000000;">
+                                <rect x="4" y="0" width="4" height="100"></rect>
+                                <rect x="12" y="0" width="2" height="100"></rect>
+                                <rect x="16" y="0" width="2" height="100"></rect>
+                                <rect x="20" y="0" width="8" height="100"></rect>
+                                <rect x="34" y="0" width="4" height="100"></rect>
+                                <rect x="40" y="0" width="2" height="100"></rect>
+                                <rect x="48" y="0" width="4" height="100"></rect>
+                                <rect x="54" y="0" width="2" height="100"></rect>
+                                <rect x="62" y="0" width="4" height="100"></rect>
+                                <rect x="68" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">16000</text>
+                            </g>
+                            <g transform="translate(116, 10)" style="fill:#000000;">
+                                <rect x="2" y="0" width="2" height="112"></rect>
+                                <rect x="6" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="5" y="134"></text>
+                            </g>
+                            <g transform="translate(126, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="100"></rect>
+                                <rect x="4" y="0" width="6" height="100"></rect>
+                                <rect x="14" y="0" width="2" height="100"></rect>
+                                <rect x="24" y="0" width="2" height="100"></rect>
+                                <rect x="28" y="0" width="2" height="100"></rect>
+                                <rect x="36" y="0" width="2" height="100"></rect>
+                                <rect x="42" y="0" width="6" height="100"></rect>
+                                <rect x="50" y="0" width="2" height="100"></rect>
+                                <rect x="56" y="0" width="6" height="100"></rect>
+                                <rect x="66" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">43790</text>
+                            </g>
+                            <g transform="translate(196, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="14" y="0" width="2" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(216, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="end" x="15" y="122">6</text>
+                            </g>
+                        </svg>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 3px solid green;font-weight: bold;font-size: 20px;">1</td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="1" style="text-align: center;font-weight: bold;">ميرندا برتقال 150 مل</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 20px;color: green;font-weight: bold;">2.00 RSA</td>
+                    <td colspan="1" rowspan="2" style="padding: 0px;width: 20%;border-bottom: 3px solid green;">
+                        <svg width="242px" height="142px" x="0px" y="0px" viewBox="0 0 242 142"
+                             xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)">
+                            <rect x="0" y="0" width="242" height="142" style="fill:#ffffff;"></rect>
+                            <g transform="translate(10, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="start" x="0" y="122">0</text>
+                            </g>
+                            <g transform="translate(26, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="12" y="0" width="4" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(46, 10)" style="fill:#000000;">
+                                <rect x="4" y="0" width="4" height="100"></rect>
+                                <rect x="12" y="0" width="2" height="100"></rect>
+                                <rect x="16" y="0" width="2" height="100"></rect>
+                                <rect x="20" y="0" width="8" height="100"></rect>
+                                <rect x="34" y="0" width="4" height="100"></rect>
+                                <rect x="40" y="0" width="2" height="100"></rect>
+                                <rect x="48" y="0" width="4" height="100"></rect>
+                                <rect x="54" y="0" width="2" height="100"></rect>
+                                <rect x="62" y="0" width="4" height="100"></rect>
+                                <rect x="68" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">16000</text>
+                            </g>
+                            <g transform="translate(116, 10)" style="fill:#000000;">
+                                <rect x="2" y="0" width="2" height="112"></rect>
+                                <rect x="6" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="5" y="134"></text>
+                            </g>
+                            <g transform="translate(126, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="100"></rect>
+                                <rect x="4" y="0" width="6" height="100"></rect>
+                                <rect x="14" y="0" width="2" height="100"></rect>
+                                <rect x="24" y="0" width="2" height="100"></rect>
+                                <rect x="28" y="0" width="2" height="100"></rect>
+                                <rect x="36" y="0" width="2" height="100"></rect>
+                                <rect x="42" y="0" width="6" height="100"></rect>
+                                <rect x="50" y="0" width="2" height="100"></rect>
+                                <rect x="56" y="0" width="6" height="100"></rect>
+                                <rect x="66" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">43790</text>
+                            </g>
+                            <g transform="translate(196, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="14" y="0" width="2" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(216, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="end" x="15" y="122">6</text>
+                            </g>
+                        </svg>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 3px solid green;font-weight: bold;font-size: 20px;">1</td>
+                </tr>
+                <tr>
+                    <td colspan="2" rowspan="1" style="text-align: center;font-weight: bold;">ماونتن ديو 250 مل</td>
+                </tr>
+                <tr>
+                    <td style="font-size: 20px;color: green;font-weight: bold;">2.00 RSA</td>
+                    <td colspan="1" rowspan="2" style="padding: 0px;width: 20%;border-bottom: 3px solid green;">
+                        <svg width="242px" height="142px" x="0px" y="0px" viewBox="0 0 242 142"
+                             xmlns="http://www.w3.org/2000/svg" version="1.1" style="transform: translate(0,0)">
+                            <rect x="0" y="0" width="242" height="142" style="fill:#ffffff;"></rect>
+                            <g transform="translate(10, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="start" x="0" y="122">0</text>
+                            </g>
+                            <g transform="translate(26, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="12" y="0" width="4" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(46, 10)" style="fill:#000000;">
+                                <rect x="4" y="0" width="4" height="100"></rect>
+                                <rect x="12" y="0" width="2" height="100"></rect>
+                                <rect x="16" y="0" width="2" height="100"></rect>
+                                <rect x="20" y="0" width="8" height="100"></rect>
+                                <rect x="34" y="0" width="4" height="100"></rect>
+                                <rect x="40" y="0" width="2" height="100"></rect>
+                                <rect x="48" y="0" width="4" height="100"></rect>
+                                <rect x="54" y="0" width="2" height="100"></rect>
+                                <rect x="62" y="0" width="4" height="100"></rect>
+                                <rect x="68" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">16000</text>
+                            </g>
+                            <g transform="translate(116, 10)" style="fill:#000000;">
+                                <rect x="2" y="0" width="2" height="112"></rect>
+                                <rect x="6" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="5" y="134"></text>
+                            </g>
+                            <g transform="translate(126, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="100"></rect>
+                                <rect x="4" y="0" width="6" height="100"></rect>
+                                <rect x="14" y="0" width="2" height="100"></rect>
+                                <rect x="24" y="0" width="2" height="100"></rect>
+                                <rect x="28" y="0" width="2" height="100"></rect>
+                                <rect x="36" y="0" width="2" height="100"></rect>
+                                <rect x="42" y="0" width="6" height="100"></rect>
+                                <rect x="50" y="0" width="2" height="100"></rect>
+                                <rect x="56" y="0" width="6" height="100"></rect>
+                                <rect x="66" y="0" width="2" height="100"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="35" y="122">43790</text>
+                            </g>
+                            <g transform="translate(196, 10)" style="fill:#000000;">
+                                <rect x="0" y="0" width="2" height="112"></rect>
+                                <rect x="4" y="0" width="2" height="112"></rect>
+                                <rect x="14" y="0" width="2" height="112"></rect>
+                                <rect x="18" y="0" width="2" height="112"></rect>
+                                <text style="font: 20px monospace" text-anchor="middle" x="10" y="134"></text>
+                            </g>
+                            <g transform="translate(216, 10)" style="fill:#000000;">
+                                <text style="font: 20px monospace" text-anchor="end" x="15" y="122">6</text>
+                            </g>
+                        </svg>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-bottom: 3px solid green;font-weight: bold;font-size: 20px;">1</td>
+                </tr>
+                </tbody>
+                <!--Table body-->
+            </table>
+        </div>
+
+    </div>
+
+</div>
+<!-- Table with panel -->
+
+</body>
+</html>
